@@ -10,10 +10,17 @@ export const cartSlice = createSlice({
             let articul = data.payload;
             if (state.value[articul] === undefined) state.value[articul] = 0;
             state.value[articul]++;
+        },
+        decrement: (state, data) => {
+            console.log(state, data);
+            let articul = data.payload;
+            console.log(state, articul);
+            if (state.value[articul] === undefined) state.value[articul] = 0;
+            state.value[articul]--;
         }
     }
 });
 
-export const { increment } = cartSlice.actions;
+export const { increment, decrement } = cartSlice.actions;
 export const selectCart = state => state.cart.value;
 export default cartSlice.reducer;

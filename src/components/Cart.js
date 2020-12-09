@@ -1,6 +1,6 @@
 import React from "react";
 
-const Cart = ({cart, goodsObj}) => {
+const Cart = ({cart, goodsObj, clickHandler}) => {
     return (
         <table className="table">
             <thead>
@@ -20,7 +20,7 @@ const Cart = ({cart, goodsObj}) => {
                         <td>{goodsObj[item]['cost']}</td>
                         <td>{cart[item]}</td>
                         <td>{goodsObj[item]['cost'] * cart[item]}</td>
-                        <td><i className="fa fa-minus"/></td>
+                        <td style={{color: "red"}}><i className="fa fa-minus" onClick={clickHandler.bind(null, item)}/></td>
                     </tr>
                 )
             })}
