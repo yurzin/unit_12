@@ -1,3 +1,5 @@
+import React from "react";
+
 function Goods({image, title, cost, articul}) {
     return (
         <div className="goods-block">
