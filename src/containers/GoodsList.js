@@ -23,12 +23,10 @@ function GoodsList() {
     };
 
     return (
-        <>
             <div className="goods-field" onClick={clickHandler}>
                 {goods.map(item => <Goods title={item.title} cost={item.cost} image={item.image}
                     articul={item.articul} key={item.articul} />)}
             </div>
-        </>
     );
 
 }

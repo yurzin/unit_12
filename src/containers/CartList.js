@@ -4,6 +4,9 @@ import {selectGoods} from '../store/goodsSlice';
 import {selectCart, decrement, clearCart} from '../store/cartSlice';
 import Cart from "../components/Cart";
 
+/**
+ * @return {null}
+ */
 function CartList() {
     const goods = useSelector(selectGoods);
     const cart = useSelector(selectCart);
@@ -18,23 +21,26 @@ function CartList() {
 
     const deleteGoods = item => dispatch(clearCart(item));
 
-    const isEmpty = obj => Object.keys(obj).length === 0;
+    const isEmpty = obj => {
+        let sum = 0;
+        for (let key in obj) {
+            sum += obj[key];
+        }
+        return sum;
+    };
 
-    return (
-        <div>
-            {
-                !isEmpty(cart)
-                    ?
-                    <Cart
-                        cart={cart}
-                        goodsObj={goodsObj}
-                        clickHandler={clickHandler}
-                        deleteGoods={deleteGoods}
-                    />
-                    : null
-            }
-        </div>
-    );
+    if (isEmpty(cart) !== 0) {
+        return (
+            <Cart
+                cart={cart}
+                goodsObj={goodsObj}
+                clickHandler={clickHandler}
+                deleteGoods={deleteGoods}
+            />
+        )
+    } else {
+        return null;
+    }
 }
 
 export default CartList;
